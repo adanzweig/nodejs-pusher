@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!-- The document type declaration, defining this document as an HTML5 document -->
+<head>
+  <title>Pusher Test</title>
+  <!-- The title of the HTML document, which is displayed in the browser's title bar or tab -->
+  <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+  <!-- Including the Pusher JavaScript library from the CDN (Content Delivery Network) -->
+  <script>
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+    // Initializes Pusher logging to the console. Useful for debugging but should be removed in production for security and performance reasons.
+
+    var pusher = new Pusher('API_KEY', {
+      cluster: 'us2'
+    });
+    // Creates a new Pusher instance with your unique key and specifies the cluster your app is hosted on.
+
+    var channel = pusher.subscribe('codingwithado');
+    // Subscribes to a channel with the name 'codingwithado' which will receive events.
+
+    channel.bind('youtubeMessages', function(data) {
+      alert(JSON.stringify(data));
+    });
+    // Listens for an event called 'youtubeMessages' and uses an alert to display the event data as a string when it is received.
+  </script>
+</head>
+<body>
+  <h1>Pusher Test</h1>
+  <!-- The main heading for the HTML document -->
+  <p>
+    Try publishing an event to channel <code>codingwithado</code>
+    with event name <code>youtubeMessages</code>.
+  </p>
+  <!-- Instructions to the user on how to test the Pusher implementation -->
+</body>
